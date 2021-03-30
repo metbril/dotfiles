@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Bootstrap a Mac after a clean install
+
+cd "${BASH_SOURCE%/*}/.."
+
+# Install command line tools (brew pre-requisite)
+# Wait to complete
+# https://stackoverflow.com/q/30533039
+echo "Installing XCode command line tools..."
+check="$(xcode-\select --install 2>&1)"
+echo $check
+str="xcode-select: note: install requested for command line developer tools"
+while [[ "$check" == "$str" ]];
+do
+    check="$(xcode-\select --install 2>&1)"
+    sleep 1
+done
+
+# Install Homebrew if not yet installed
+# https://brew.sh/
+echo "Check for Homebrew..."
+command -v brew >/dev/null 2>&1 || { echo >&2 "Installing Homebrew..."; \
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; }
+
+# Brew!
+echo "Brewing now.."
+brew bundle
