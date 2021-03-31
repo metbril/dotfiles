@@ -1,0 +1,15 @@
+default_hour: 9
+default_minute: 0
+editor: ''
+encrypt: false
+highlight: true
+indent_character: '|'
+journals:
+  default: /Users/robert/.local/share/jrnl/journal.txt
+  online: /Users/robert/Nextcloud/text/jrnl/journal.txt
+  gezondheid: /Users/robert/Nextcloud/text/journal/gezondheid.txt
+linewrap: 79
+tagsymbols: '@'
+template: false
+timeformat: '%Y-%m-%d %H:%M'
+version: v2.2
