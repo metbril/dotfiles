@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+export PATH=/usr/local/opt/python@3.9/libexec/bin:$PATH
+
+# python, ruby etc scripts
+export PATH="$HOME/scripts:$PATH";
+
+# binaries and shell scripts
+export PATH="$HOME/bin:$PATH";
