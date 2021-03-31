@@ -133,3 +133,5 @@ alias bbb='date > /Volumes/Samsung\ T5\ 1TB/backblaze-backup.txt'
 
 # https://coderwall.com/p/ifxb-g/uuidgen-in-lowercase-on-mac-os-x
 alias uuidgen='uuidgen | tr "[:upper:]" "[:lower:]"'
+
+alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
