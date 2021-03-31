@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# updateall
+
+# brew
+
+brewup
+
+# ruby - do not use system ruby
+
+brew install rbenv
+rbenv rehash
+
+gem update --system
+
+# python
+
+pip3 install --upgrade pip
+pip2 install --upgrade pip
