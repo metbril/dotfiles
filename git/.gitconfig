@@ -1,0 +1,21 @@
+[push]
+	default = simple
+
+[alias]
+  # fetch all (no auto push for now)
+  fa = !"git checkout master; git fetch origin -v; git fetch upstream -v; git merge upstream/master"
+
+# set these in local file...
+[user]
+	name  = 
+	email = 
+
+# use separate file for username / github token / etc
+[include]
+  path = ~/.gitconfig.local
+  path = ~/.gitconfig.private
+[core]
+  excludesFile = ~/.gitignore
+  editor = nano
+[init]
+	defaultBranch = main
