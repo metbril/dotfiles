@@ -118,3 +118,7 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 # Press and hold a key and have it repeat in VSCodium
 # https://github.com/VSCodium/vscodium/blob/master/DOCS.md#how-do-i-press-and-hold-a-key-and-have-it-repeat-in-vscodium-mac
 defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
+
+# Stop Mac App Store notifications
+# https://lapcatsoftware.com/articles/mas-notifications.html
+defaults write com.apple.appstored LastUpdateNotification -date "2029-12-12 12:00:00 +0000"
