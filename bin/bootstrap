@@ -26,3 +26,6 @@ command -v brew >/dev/null 2>&1 || { echo >&2 "Installing Homebrew..."; \
 # Brew!
 echo "Brewing now.."
 brew bundle
+
+echo "Set system defaults..."
+./macosdefaults
