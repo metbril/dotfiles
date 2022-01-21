@@ -9,22 +9,23 @@ tap "homebrew/cask-versions"
 tap "homebrew/core"
 
 tap "buo/cask-upgrade"
+tap "rajiv/fastmate"
 
 brew "mas"
 brew "svn"
 
 # --- Formulae ---
 
-brew "coreutils"
-brew "exiftool"
+# brew "coreutils"
+# brew "exiftool"
 brew "hugo"
-brew "imagemagick"
-brew "imageoptim-cli"
-brew "multimarkdown"
-brew "pandoc"
-brew "rename"
-brew "stow"
-brew "terminal-notifier"
+# brew "imagemagick"
+# brew "imageoptim-cli"
+# brew "multimarkdown"
+# brew "pandoc"
+# brew "rename"
+# brew "stow"
+# brew "terminal-notifier"
 
 # brew "bitwarden-cli"
 # brew "tmux"
@@ -41,11 +42,11 @@ cask "font-ibm-plex-mono"  # requires svn package
 cask "font-oswald"
 
 # --- Mac App Store
-
 # Place these before casks, to prefer MAS if accidentally listed in both
 
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
+mas "BBedit", id: 404009241
 mas "Home Assistant", id: 1099568401
 mas "Things", id: 904280696
 
@@ -53,24 +54,17 @@ mas "Things", id: 904280696
 
 cask "alfred"
 cask "appcleaner"
-cask "balenaetcher"
 cask "bartender"
 cask "backblaze"
-cask "bbedit" 
 cask "bettertouchtool"
-# cask "calibre"
+cask "calibre"
 cask "coconutbattery"
-cask "controlplane"
 cask "cryptomator"
-cask "cyberduck"
-cask "digikam"
+cask "fastmate"
 cask "firefox", args: { language: "nl" }
+cask "hazel"
 cask "hocus-focus"
-cask "imageoptim"
-cask "iterm2"
-cask "keyboardcleantool"
-# cask "libreoffice"
-# cask "libreoffice-language-pack"
+cask "little-snitch"
 cask "namechanger"
 cask "nvalt"
 cask "obsidian"
@@ -81,22 +75,33 @@ cask "scroll-reverser"
 cask "signal"
 cask "spotify"
 cask "sync"
-cask "ubersicht"
+cask "visual-studio-code"
 cask "vlc"
 
 # cask "adobe-digital-editions"
-# cask "caffeine"
+# cask "balenaetcher"
+# cask "basictex"  # to create pdf with pandoc
+# cask "bbedit"  # mas
+# cask "caffeine"  # replaced by Amphetamine
+# cask "controlplane"
+# cask "cyberduck"
 # cask "devonthink"
-# cask "hazel # using an older version
+# cask "digikam"
+# cask "imageoptim"
+# cask "iterm2"
 # cask "keyboard-maestro" # using an older version
+# cask "keyboardcleantool"
+# cask "libreoffice"
+# cask "libreoffice-language-pack"
 # cask "thunderbird"
-# cask "vscodium"
+# cask "ubersicht"
 # cask "zotero"
 
 # --- Drivers ---
 
-# cask "garmin-basecamp"
-# cask "garmin-express"
+cask "garmin-express"
+
+# cask "garmin-basecamp"  # mas
 # cask "jabra-direct"
 # cask "logitech-camera-settings" # webcam
 # cask "logitech-options"         # mouse / keyboard
