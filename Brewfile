@@ -47,6 +47,7 @@ cask "font-oswald"
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
 mas "BBedit", id: 404009241
+mas "Garmin BaseCamp", id: 411052274
 mas "Home Assistant", id: 1099568401
 mas "Things", id: 904280696
 
@@ -64,12 +65,13 @@ cask "fastmate"
 cask "firefox", args: { language: "nl" }
 cask "hazel"
 cask "hocus-focus"
+cask "libreoffice"
+cask "libreoffice-language-pack" , args: { language: "nl" }
 cask "little-snitch"
 cask "namechanger"
 cask "nvalt"
 cask "obsidian"
 cask "omnidisksweeper"
-cask "private-internet-access"
 cask "rectangle"
 cask "scroll-reverser"
 cask "signal"
@@ -78,11 +80,12 @@ cask "sync"
 cask "visual-studio-code"
 cask "vlc"
 
+# requires sudo
+cask "private-internet-access"
+
 # cask "adobe-digital-editions"
 # cask "balenaetcher"
 # cask "basictex"  # to create pdf with pandoc
-# cask "bbedit"  # mas
-# cask "caffeine"  # replaced by Amphetamine
 # cask "controlplane"
 # cask "cyberduck"
 # cask "devonthink"
@@ -91,8 +94,6 @@ cask "vlc"
 # cask "iterm2"
 # cask "keyboard-maestro" # using an older version
 # cask "keyboardcleantool"
-# cask "libreoffice"
-# cask "libreoffice-language-pack"
 # cask "thunderbird"
 # cask "ubersicht"
 # cask "zotero"
@@ -101,7 +102,6 @@ cask "vlc"
 
 cask "garmin-express"
 
-# cask "garmin-basecamp"  # mas
 # cask "jabra-direct"
 # cask "logitech-camera-settings" # webcam
 # cask "logitech-options"         # mouse / keyboard
@@ -109,7 +109,3 @@ cask "garmin-express"
 # cask "samsung-portable-ssd-t5"
 # cask "sonos"
 # cask "yubico-yubikey-personalization-gui"
-
-
-
-
