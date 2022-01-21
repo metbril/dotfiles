@@ -86,7 +86,7 @@ defaults write com.apple.dock no-glass -boolean YES
 defaults write com.apple.dock show-process-indicators -bool true
 
 # Make Dock icons of hidden applications translucent
-defaults write com.apple.Dock showhidden -bool YES
+defaults write com.apple.Dock showhidden -bool false
 
 # Set the icon size of Dock items in pixels
 defaults write com.apple.dock tilesize -int 48
@@ -122,3 +122,5 @@ defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
 # Stop Mac App Store notifications
 # https://lapcatsoftware.com/articles/mas-notifications.html
 defaults write com.apple.appstored LastUpdateNotification -date "2029-12-12 12:00:00 +0000"
+
+killall Dock

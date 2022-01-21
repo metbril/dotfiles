@@ -38,5 +38,10 @@ The Filezilla config contains login credentials and is not suitable to be added 
 
 ## Tips & Tricks
 
+### Brew
 - [Brew Bundle Brewfile Tips](https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f)
 - [macOS migrations with Brewfile](https://openfolder.sh/macos-migrations-with-brewfile)
+
+### Defaults
+
+- [Mathias Bynens's famous defaults](https://github.com/mathiasbynens/dotfiles/blob/main/.macos)
