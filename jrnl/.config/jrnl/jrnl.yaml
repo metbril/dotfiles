@@ -1,15 +1,20 @@
+colors:
+  body: white
+  date: red
+  tags: cyan
+  title: yellow
 default_hour: 9
 default_minute: 0
-editor: ''
+editor: 'bbedit -w'
 encrypt: false
 highlight: true
 indent_character: '|'
 journals:
-  default: /Users/robert/.local/share/jrnl/journal.txt
-  online: /Users/robert/Nextcloud/text/jrnl/journal.txt
-  gezondheid: /Users/robert/Nextcloud/text/journal/gezondheid.txt
+  default: ~/Documents/Notities/Journal/journal.txt
+  gezondheid: ~/Documents/Notities/Journal/gezondheid.txt
+  vakantie: ~/Documents/Notities/Journal/vakantie.txt
 linewrap: 79
-tagsymbols: '@'
+tagsymbols: '@#'
 template: false
 timeformat: '%Y-%m-%d %H:%M'
-version: v2.2
+version: v2.8
