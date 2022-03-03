@@ -32,3 +32,6 @@ brew bundle
 
 echo "Set system defaults..."
 bin/macosdefaults
+
+echo "Stow files..."
+stow cups filezilla git gnupg iterm2 joplin jrnl scripts tmux todotxt zsh
