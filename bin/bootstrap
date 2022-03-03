@@ -17,6 +17,9 @@ do
     sleep 1
 done
 
+# Install Rosetta 2 for those apps that still require it.
+sudo softwareupdate --install-rosetta
+
 # Install Homebrew if not yet installed
 # https://brew.sh/
 echo "Check for Homebrew..."
