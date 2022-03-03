@@ -31,4 +31,4 @@ echo "Brewing now.."
 brew bundle
 
 echo "Set system defaults..."
-./macosdefaults
+bin/macosdefaults
