@@ -68,7 +68,7 @@ cask "bartender"
 # cask "basictex"  # to create pdf with pandoc
 cask "backblaze"
 cask "bettertouchtool"
-cask "calibre"
+# cask "calibre"
 cask "coconutbattery"
 cask "cryptomator"
 # cask "cyberduck"
@@ -81,7 +81,7 @@ cask "hazel"
 # cask "iterm2"
 # cask "keyboard-maestro"  # disabled; using an older version
 # cask "keyboardcleantool"
-cask "libreoffice"
+# cask "libreoffice"
 cask "little-snitch"
 cask "namechanger"
 cask "nvalt"
@@ -102,7 +102,7 @@ cask "vlc"
 cask "private-internet-access"
 
 # requires manual install afterwards
-cask "libreoffice-language-pack" , args: { language: "nl" }
+# cask "libreoffice-language-pack" , args: { language: "nl" }
 
 # --- Drivers ---
 
