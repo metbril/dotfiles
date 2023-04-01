@@ -34,4 +34,4 @@ echo "Set system defaults..."
 bin/macosdefaults
 
 echo "Stow files..."
-stow cups filezilla git gnupg iterm2 joplin jrnl scripts tmux todotxt zsh
+stow cups emacs filezilla git gnupg iterm2 joplin jrnl scripts tmux todotxt zsh
