@@ -11,12 +11,12 @@ if [ `uname` == "Darwin" ]; then
  
   # -l display Model Name and Processor Name
   if [ "$1" == "-l" ]; then
-    system_profiler SPHardwareDataType | awk '/Model Name/ || /Processor Name/' | sed 's/[^:]*: //' | awk '{ printf $0 "  " }'
+    system_profiler SPHardwareDataType | awk '/Model Name/ || /Chip/' | sed 's/[^:]*: //' | awk '{ printf $0 "  " }'
     echo
   fi
  
   # sensor data
-  temperature=`ioreg -r -n AppleSmartBattery | grep Temperature | cut -c23-`
+  temperature=`ioreg -r -n AppleSmartBattery | grep \"Temperature\" | cut -c23-`
   temperature_celsius=`echo $temperature / 100.0 | bc`
   echo "AppleSmartBattery Temperature: "
   echo $temperature_celsius °C
