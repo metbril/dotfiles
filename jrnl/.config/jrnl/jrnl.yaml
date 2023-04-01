@@ -13,6 +13,7 @@ journals:
   default: ~/Documents/Notities/Journal/journal.txt
   gezondheid: ~/Documents/Notities/Journal/gezondheid.txt
   vakantie: ~/Documents/Notities/Journal/vakantie.txt
+  mobiel: '~/Library/Mobile Documents/com~apple~CloudDocs/Documenten/text/journal/journal.txt'
 linewrap: 79
 tagsymbols: '@#'
 template: false
