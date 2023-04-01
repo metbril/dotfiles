@@ -1,9 +1,0 @@
-#!/bin/bash
-
-echo Update brew...
-
-brew update
-brew upgrade
-brew cask upgrade
-brew cleanup
-rm -rf $(brew --cache)
