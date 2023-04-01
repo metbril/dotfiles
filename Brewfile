@@ -48,13 +48,12 @@ cask "font-ia-writer-quattro"
 cask "font-ibm-plex-mono"  # requires svn package
 cask "font-oswald"
 
-# --- Mac App Store
-# Place these before casks, to prefer MAS if accidentally listed in both
+# --- Mac App Store ---
+# Place these before any casks, to prefer MAS if accidentally listed in both
 
 mas "Amphetamine", id: 937984704
-mas "Bitwarden", id: 1352778147
+mas "Bitwarden", id: 1352778147  # MAS required for Safari extension
 mas "BBedit", id: 404009241
-mas "Garmin BaseCamp", id: 411052274
 mas "Home Assistant", id: 1099568401
 mas "Things", id: 904280696
 
@@ -74,9 +73,11 @@ cask "cryptomator"
 # cask "cyberduck"
 # cask "devonthink"
 # cask "digikam"
+cask "emacs"
 cask "fastmate"
 cask "firefox", args: { language: "nl" }
 cask "hazel"
+cask "garmin-basecamp"
 # cask "imageoptim"
 # cask "iterm2"
 # cask "keyboard-maestro"  # disabled; using an older version
