@@ -7,7 +7,7 @@
 
 # set these in local file...
 [user]
-	name  = 
+	name = Robert
 	email = 
 
 # use separate file for username / github token / etc
