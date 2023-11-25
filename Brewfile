@@ -33,13 +33,23 @@ brew "hugo"
 # brew "imagemagick"
 # brew "imageoptim-cli"
 # brew "multimarkdown"
-# brew "pandoc"
-# brew "rename"
+brew "pandoc"
+brew "rename"
 # brew "terminal-notifier"
 # brew "tmux"
 
 # --- Fonts ---
 
+cask "font-arimo"           # arial
+cask "font-tinos"           # times new roman
+cask "font-cousine"         # courier new
+cask "font-neuton"          # georgia
+
+cask "font-carlito"         # calibri
+cask "font-caladea"         # cambria
+cask "font-inconsolata"     # consolas
+
+cask "font-cascadia-code"
 cask "font-fira-mono"
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
@@ -47,16 +57,19 @@ cask "font-ia-writer-duo"
 cask "font-ia-writer-mono"
 cask "font-ia-writer-quattro"
 cask "font-ibm-plex-mono"  # requires svn package
+
 cask "font-oswald"
+
 
 # --- Mac App Store ---
 # Place these before any casks, to prefer MAS if accidentally listed in both
 
 mas "Amphetamine", id: 937984704
-mas "Bitwarden", id: 1352778147  # MAS required for Safari extension
+mas "Bitwarden", id: 1352778147  # MAS version is required for Safari extension
 mas "BBedit", id: 404009241
 mas "Home Assistant", id: 1099568401
 mas "Things", id: 904280696
+mas "The Unarchiver", id: 425424353
 
 # --- Casks / Applications ---
 
@@ -65,10 +78,9 @@ cask "alfred"
 cask "appcleaner"
 # cask "balenaetcher"
 cask "bartender"
-# cask "basictex"  # to create pdf with pandoc
 cask "backblaze"
 cask "bettertouchtool"
-# cask "calibre"
+cask "calibre"
 cask "coconutbattery"
 cask "cryptomator"
 # cask "cyberduck"
@@ -77,15 +89,19 @@ cask "cryptomator"
 cask "emacs"
 cask "fastmate"
 cask "firefox", args: { language: "nl" }
+cask "forklift"
 cask "hazel"
 cask "garmin-basecamp"
+cask "gpg-suite-no-mail"
 # cask "imageoptim"
 # cask "iterm2"
+cask "keepassxc"
 # cask "keyboard-maestro"  # disabled; using an older version
 # cask "keyboardcleantool"
 # cask "libreoffice"
 cask "little-snitch"
 cask "namechanger"
+cask "netnewswire"
 cask "nvalt"
 cask "obsidian"
 cask "omnidisksweeper"
@@ -94,6 +110,7 @@ cask "scroll-reverser"
 cask "signal"
 cask "spotify"
 cask "sync"
+cask "syncthing"
 # cask "thunderbird"
 # cask "ubersicht"
 cask "visual-studio-code"
@@ -101,6 +118,7 @@ cask "vlc"
 # cask "zotero"
 
 # requires sudo
+cask "basictex"  # create pdfs with pandoc
 cask "private-internet-access"
 
 # requires manual install afterwards
