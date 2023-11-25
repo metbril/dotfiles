@@ -3,3 +3,6 @@ Brewfile.lock.json
 
 #gnupg
 pubring.kbx
+
+# emacs
+*.el~
