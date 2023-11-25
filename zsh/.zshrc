@@ -2,7 +2,7 @@
 
 # https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
 
-for file in ~/.{path,aliases,functions,extra}; do
+for file in ~/.{path,aliases,functions,extra,private}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
