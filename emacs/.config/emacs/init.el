@@ -5,26 +5,44 @@
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
-(server-start)
-(require 'org-protocol)
+;; set to nl_NL.UTF-8 for Dutch month/day names
+(set-locale-environment "en_NL.UTF-8")
 
-;; Don't ask to follow symlinks, mostly for init.el in dotfiles.
-(setq vc-follow-symlinks nil)
+(setq set-language-environment "Dutch")
+
+(set-face-attribute 'default nil
+                    :family "JetBrains Mono"
+                    :height 130)
+
+(set-face-attribute 'fixed-pitch nil
+                    :family  "JetBrains Mono"
+                    :height 130)
+
+;; When opening a file, start searching at the user's home directory.
+(setq default-directory "~/")
+
+(setq org-directory "~/org")
+(setq org-default-notes-file (concat org-directory "/inbox.org"))
 
 ;; org-journal
 (setq org-journal-file-type 'yearly)
-(setq org-journal-dir "~/org/journal")
+(setq org-journal-dir (concat org-directory "/journal"))
 (setq org-journal-file-format "%Y-%m-%d.org")
 (setq org-journal-date-format "%A %-d %B %Y")
 (setq org-journal-time-format "%H:%M")
 ;; created property must be only date and not time to work
 (setq org-journal-created-property-timestamp-format "[%Y-%m-%d %a]")
 (require 'org-journal)
-(global-set-key (kbd "C-c j") #'org-journal-new-entry)
 
 ;; Automatically reload files was modified by external program
 ;; Useful for memacs ;-)
-(global-auto-revert-mode 1)
+(global-auto-revert-mode t)
+
+;; Don't ask to follow symlinks, mostly for init.el in dotfiles.
+(setq vc-follow-symlinks nil)
+
+;; Don't assume that sentences should have two spaces after periods.
+(setq sentence-end-double-space nil)
 
 ;; maximize initial screen at application start
 ;; https://emacs.stackexchange.com/a/3008
@@ -33,37 +51,40 @@
 (add-to-list 'default-frame-alist '(fullscreen . fullheight))
 
 ;; Set global keys for better experience
-(global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
+(global-set-key (kbd "C-c j") #'org-journal-new-entry)
+(global-set-key (kbd "C-c l") #'org-store-link)
 
+;; org-tempo
 (require 'org-tempo)
 
-(setq set-language-environment "Dutch")
-
-;; org-mobile
+;; ---------- org-mobile ----------
 ;; https://orgmode.org/manual/Org-Mobile.html
+
 (setq org-mobile-directory "~/Library/Mobile Documents/iCloud~com~mobileorg~mobileorg/Documents")
-(setq org-mobile-inbox-for-pull "~/org/inbox.org")
 
-(setq org-directory "~/org")
-(setq org-default-notes-file "~/org/refile.org")
+(setq org-mobile-inbox-for-pull org-default-notes-file)
 
-;; TODO
+;; ---------- org-todo ----------
+
 ;; https://orgmode.org/manual/Tracking-TODO-state-changes.html
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "STARTED(s!/!)" "WAIT(w@/!)" "|" "CANCELLED(c@/!)" "DONE(d!/!)")))
+      '((sequence "TODO(t)" "NEXT(n)" "STARTED(s!/!)" "WAIT(w@/!)"
+		  "|" "CANCELLED(c@/!)" "DONE(d!/!)")))
+
+;; Log state changes to LOGBOOK drawer
 (setq org-log-into-drawer t)
 
-;; Org-Agenda
+;; ---------- org-agenda ----------
+
 (setq org-agenda-files
       '(
 	"~/org/"
 	"~/org/memacs/"
 	"~/org/migrated/"
-	"~/Library/Mobile Documents/iCloud~is~workflow~my~workflows/Documents/shortcuts.org"
-	"~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/beorg.org"
 	))
+
 (setq org-agenda-custom-commands
    '(("n" "Agenda and all TODOs"
       ((agenda "" nil)
@@ -71,46 +92,126 @@
       nil)
      ("w" "WAITING" alltodo "" nil)))
 
-;; Org-Refile
+(setq org-agenda-include-diary t)
+
+;; Hide entries based on time in global todo list
+(setq org-agenda-todo-ignore-time-comparison-use-seconds t)
+
+;; Hide entries with future scheduled date from global todo list
+(setq org-agenda-todo-ignore-scheduled 'future)
+
+;; Hide entries with future deadlines from global todo list
+(setq org-agenda-todo-ignore-deadlines 'future)
+
+;; Honor hidden todos when filtering with tags
+(setq org-agenda-tags-todo-honor-ignore-options t)
+
+;; ---------- org-refile ----------
+
 (setq org-refile-targets '((nil :maxlevel . 9)
 			   (org-agenda-files :maxlevel . 9)))
 (setq org-refile-use-outline-path 'file)
 
-;; Org-Capture
-(setq org-capture-templates '(
-  ;; many more capture templates
-  ("b" "Bookmark" entry (file+headline "~/org/notes.org" "Bookmarks")
-       "* %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n" :empty-lines 1)
-  ("c" "Contacts" entry (file "~/org/contacts.org")
-       "* %(org-contacts-template-name)
-:PROPERTIES:
-:EMAIL: %(org-contacts-template-email)
-:END:")
- ;; many more capture templates
- ))
-
-(setq org-agenda-include-diary t)
+;; ---------- org-contacts ----------
 
 (setq org-contacts-files '("~/org/contacts.org"))
 (require' org-contacts)
 
-;; ----------
+;; ---------- org-capture ----------
+
+(setq org-capture-templates
+      '(
+	("t" "todo" entry (file org-default-notes-file)
+	 "* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n%a\n" :empty-lines 1)
+
+	("b" "Bookmark" entry (file+headline "~/org/notes.org" "Bookmarks")
+	 "* %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n" :empty-lines 1)
+
+	("c" "Contacts" entry (file "~/org/contacts.org")
+	 "* %(org-contacts-template-name)
+:PROPERTIES:
+:EMAIL: %(org-contacts-template-email)
+:END:")
+	))
+
+;; Store backups and auto-saved files in TEMPORARY-FILE-DIRECTORY
+;; (which defaults to /tmp on Unix),;; instead of in the same
+;; directory as the file. This means we're still making backups, but
+;; not where they'll get in the way.
+
+;; WARNING: on most Unix-like systems /tmp is volatile, in-memory
+;; storage, so your backups won't survive if your computer crashes!
+;; If you're not willing to take this risk, you shouldn't enable this
+;; setting.
+
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+;; Create ID in interactive (C-c l)
+(setq org-id-link-to-org-use-id 'create-if-interactive)
+
+;; Call DELETE-TRAILING-WHITESPACE every time a buffer is saved.
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; If you save a file that doesn't end with a newline, automatically
+;; append one.
+(setq require-final-newline t)
+
+;; If some text is selected, and you type some text, delete the
+;; selected text and start inserting your typed text.
+(delete-selection-mode t)
+
+;; Ask if you're sure that you want to close Emacs.
+(setq confirm-kill-emacs 'y-or-n-p)
+
+;; Don't ask `yes/no?', ask `y/n?'.
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Don't present the usual startup message, and clear the scratch
+;; buffer."
+(setq inhibit-startup-message t)
+(setq initial-scratch-message nil)
+
+;; Turn on syntax highlighting whenever possible.
+(global-font-lock-mode t)
+
+;; Visually indicate matching pairs of parentheses.
+(show-paren-mode t)
+(setq show-paren-delay 0.0)
+
+;; When you perform a problematic operation, flash the screen instead
+;; of ringing the terminal bell.
+(setq visible-bell t)
+
+;; "When you double-click on a file in the Mac Finder open it as a
+;; buffer in the existing Emacs frame, rather than creating a new
+;; frame just for that file.
+;; (setq ns-pop-up-frames nil)
+
+;; Solarized theme
+;;
+;; Don't change size of org-mode headlines (but keep other size-changes)
+(setq solarized-scale-org-headlines nil)
+;; Don't change the font for some headings and titles
+(setq solarized-use-variable-pitch nil)
+
+;; -----------------------------------------------------------------
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(current-language-environment "Dutch")
- '(custom-enabled-themes '(nord))
+ '(custom-enabled-themes '(solarized-dark))
  '(custom-safe-themes
-   '("b60b55ecd22db6cf1072d72532cbc87174edd81c18419962deb4b8ba48f6b49d" "fee7287586b17efbfda432f05539b58e86e059e78006ce9237b8732fde991b4c" "f5b6be56c9de9fd8bdd42e0c05fecb002dedb8f48a5f00e769370e4517dde0e8" "50221b754c90ba6627bd8e40a13d01845a6d906d28062982d8c9aeab16efd211" "5dbdb4a71a0e834318ae868143bb4329be492dd04bdf8b398fb103ba1b8c681a" "9271c0ad73ef29af016032376d36e8aed4e89eff17908c0b578c33e54dfa1da1" "d543a5f82ce200d50bdce81b2ecc4db51422439ba7c0e6845483dd89566e4cf9" default))
- '(global-visual-line-mode t)
- '(package-selected-packages
-   '(org-journal org-contacts nord-theme solarized-theme snazzy-theme)))
+   '("4c56af497ddf0e30f65a7232a8ee21b3d62a8c332c6b268c81e9ea99b11da0d3" "fee7287586b17efbfda432f05539b58e86e059e78006ce9237b8732fde991b4c" "b60b55ecd22db6cf1072d72532cbc87174edd81c18419962deb4b8ba48f6b49d" default))
+ '(org-agenda-files
+   '("~/org/memacs/ingbank.org" "/Users/robert/org/inbox.org" "/Users/robert/org/memacs/lastfm.org")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#2E3440" :foreground "#D8DEE9" :inverse-video nil :box nil :strike-through nil :extend nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "IBM Plex Mono")))))
+ '(default ((t nil))))
